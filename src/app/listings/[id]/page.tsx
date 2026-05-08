@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { prisma } from "../../../lib/prisma";
 import InquiryForm from "../../../components/InquiryForm";
-import SaveListingButton from "../../../components/SaveListingButton";
 import ShareListingButton from "../../../components/ShareListingButton";
 import MapSection from "../../../components/MapSection";
 import MortgageCalculator from "../../../components/MortgageCalculator";
@@ -71,12 +70,8 @@ export default async function ListingDetailsPage({
         style={{
           marginTop: "20px",
           marginBottom: "30px",
-          display: "flex",
-          gap: "12px",
-          flexWrap: "wrap",
         }}
       >
-        <SaveListingButton id={listing.id} />
         <ShareListingButton />
       </div>
 

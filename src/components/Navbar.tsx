@@ -64,8 +64,6 @@ export default function Navbar() {
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
         <Link href="/">Home</Link>
         <Link href="/listings">Listings</Link>
-        <Link href="/saved">Saved</Link>
-        <Link href="/recently-viewed">Recently Viewed</Link>
         <Link href="/about">About</Link>
         <Link href="/contact">Contact</Link>
         <Link href="/testimonial">Testimonial</Link>
