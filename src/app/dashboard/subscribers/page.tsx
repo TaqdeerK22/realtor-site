@@ -10,7 +10,7 @@ export default async function SubscribersPage() {
   });
 
   return (
-    <main style={{ padding: "40px" }}>
+    <main className="page-motion" style={{ padding: "40px" }}>
       <Link href="/dashboard">← Back to Dashboard</Link>
 
       <h1>Subscribers</h1>

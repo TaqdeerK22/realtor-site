@@ -11,7 +11,7 @@ export default async function DashboardListingsPage() {
   });
 
   return (
-    <main style={{ padding: "40px" }}>
+    <main className="page-motion" style={{ padding: "40px" }}>
       <Link href="/dashboard">← Back to Dashboard</Link>
 
       <h1>Manage Listings</h1>

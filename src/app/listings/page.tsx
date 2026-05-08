@@ -63,7 +63,7 @@ export default async function ListingsPage({
     <>
       <Navbar />
 
-      <main style={{ padding: "40px" }}>
+      <main className="page-motion" style={{ padding: "40px" }}>
         <h1>Listings</h1>
 
         <form style={{ display: "flex", gap: "12px", marginBottom: "30px", flexWrap: "wrap" }}>

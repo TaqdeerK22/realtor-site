@@ -4,6 +4,7 @@ import ListingBadge from "./ListingBadge";
 export default function ListingCard({ listing }: { listing: any }) {
   return (
     <div
+      className="card-hover"
       style={{
         background: "white",
         borderRadius: "14px",

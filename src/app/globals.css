@@ -1,12 +1,26 @@
+:root {
+  --gold: #B08401;
+  --rose: #D49E8D;
+  --sand: #DED1BD;
+  --cream: #FAF6F2;
+  --brown: #683B2B;
+  --dark: #2b211d;
+  --white: #ffffff;
+}
+
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #f7f7f7;
-  color: #111;
+  background: var(--cream);
+  color: var(--dark);
 }
 
 a {
@@ -14,17 +28,91 @@ a {
   text-decoration: none;
 }
 
+input,
+textarea,
+select {
+  border: 1px solid var(--sand);
+  border-radius: 14px;
+  font-size: 16px;
+  background: white;
+}
+
 button {
   cursor: pointer;
+  transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
 }
 
-input,
-textarea {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
+button:hover {
+  transform: translateY(-3px);
+  opacity: 0.92;
+  box-shadow: 0 10px 25px rgba(104, 59, 43, 0.18);
 }
 
-main {
-  background: #f7f7f7;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatSoft {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes slowGlow {
+  0% { box-shadow: 0 0 0 rgba(176, 132, 1, 0.15); }
+  50% { box-shadow: 0 0 35px rgba(176, 132, 1, 0.32); }
+  100% { box-shadow: 0 0 0 rgba(176, 132, 1, 0.15); }
+}
+
+@keyframes softZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.06); }
+}
+
+.page-motion {
+  animation: fadeUp 0.75s ease both;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.9s ease both;
+}
+
+.animate-float {
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: slowGlow 4s ease-in-out infinite;
+}
+
+.animate-zoom-bg {
+  animation: softZoom 12s ease-in-out infinite alternate;
+}
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(104, 59, 43, 0.16);
+}
+
+.pretty-section {
+  background: rgba(255,255,255,0.75);
+  border: 1px solid rgba(222, 209, 189, 0.9);
+  border-radius: 22px;
+  box-shadow: 0 14px 34px rgba(104, 59, 43, 0.08);
+}
+
+::selection {
+  background: var(--rose);
+  color: var(--brown);
 }

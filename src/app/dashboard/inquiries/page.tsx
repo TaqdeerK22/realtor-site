@@ -15,7 +15,7 @@ export default async function InquiriesPage() {
   });
 
   return (
-    <main style={{ padding: "40px" }}>
+    <main className="page-motion" style={{ padding: "40px" }}>
       <Link href="/dashboard">← Back to Dashboard</Link>
 
       <h1>Customer Inquiries</h1>

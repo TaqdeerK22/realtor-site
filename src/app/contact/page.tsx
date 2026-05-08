@@ -6,7 +6,7 @@ export default function ContactPage() {
     <>
       <Navbar />
 
-      <main style={{ padding: "40px", maxWidth: "700px", margin: "0 auto" }}>
+      <main className="page-motion" style={{ padding: "40px", maxWidth: "700px", margin: "0 auto" }}>
         <h1>Contact Realtor</h1>
         <p>Send a message and the realtor will get back to you.</p>
 
