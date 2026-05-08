@@ -6,36 +6,73 @@ export default function AboutPage() {
     <>
       <Navbar />
 
-      <main className="fade-up" className="page-motion" style={{ padding: "40px", maxWidth: "1000px", margin: "0 auto" }}>
-        <h1>About Your Realtor</h1>
+      <main className="fade-up page-motion" style={{ padding: "70px 0" }}>
+        <div className="page-container">
+          <section
+            className="soft-card"
+            style={{
+              padding: "60px",
+              maxWidth: "900px",
+              margin: "0 auto",
+            }}
+          >
+            <p
+              style={{
+                color: "#B08401",
+                letterSpacing: "3px",
+                textTransform: "uppercase",
+                fontWeight: 700,
+              }}
+            >
+              About Your Realtor
+            </p>
 
-        <p style={{ fontSize: "18px", lineHeight: "1.7" }}>
-          I help buyers, sellers, and investors find the right property across British Columbia.
-          My goal is to make real estate simple, honest, and stress-free.
-        </p>
+            <h1 className="page-title">Lovepreet Singh</h1>
 
-        <section style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "20px", marginTop: "30px" }}>
-          <div style={{ background: "white", padding: "20px", borderRadius: "12px" }}>
-            <h2>Buyers</h2>
-            <p>Personalized property searches, market guidance, and offer support.</p>
-          </div>
+            <p className="lead-text">
+              Lovepreet Singh is passionate about helping people find more than
+              just a property — he helps them find confidence, comfort, and a
+              place where their next chapter can begin.
+            </p>
 
-          <div style={{ background: "white", padding: "20px", borderRadius: "12px" }}>
-            <h2>Sellers</h2>
-            <p>Listing strategy, pricing advice, marketing, and negotiation support.</p>
-          </div>
+            <p className="lead-text">
+              With a people-first approach, Lovepreet focuses on clear
+              communication, honest guidance, and making the buying or selling
+              process feel less stressful and more meaningful.
+            </p>
 
-          <div style={{ background: "white", padding: "20px", borderRadius: "12px" }}>
-            <h2>Investors</h2>
-            <p>Help finding strong opportunities with long-term value.</p>
-          </div>
-        </section>
+            <blockquote
+              style={{
+                margin: "32px 0",
+                padding: "26px",
+                borderLeft: "5px solid #B08401",
+                background: "#FAF6F2",
+                borderRadius: "18px",
+                color: "#683B2B",
+                fontFamily: "var(--font-serif)",
+                fontSize: "26px",
+                lineHeight: "1.5",
+              }}
+            >
+              “A home is not just where you live — it is where your future
+              starts to feel possible.”
+            </blockquote>
 
-        <Link href="/contact">
-          <button style={{ marginTop: "30px", padding: "14px 24px", background: "black", color: "white" }}>
-            Contact Me
-          </button>
-        </Link>
+            <p className="lead-text">
+              Whether you are buying your first home, selling your current
+              property, or simply exploring your options, Lovepreet is ready to
+              listen, guide, and help you move forward with clarity.
+            </p>
+
+            <div style={{ marginTop: "36px" }}>
+              <Link href="/contact">
+                <button className="btn btn-primary">
+                  Contact Lovepreet
+                </button>
+              </Link>
+            </div>
+          </section>
+        </div>
       </main>
     </>
   );

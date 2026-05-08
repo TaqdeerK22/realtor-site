@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import ImageUploader from "./ImageUploader";
 
 export default function NewListingForm() {
   const router = useRouter();
@@ -60,45 +61,9 @@ export default function NewListingForm() {
         <option value="Land">Land</option>
       </select>
 
-      <input
-        name="image"
-        placeholder="Main Image URL"
-        required
-        onChange={(e) => setImagePreview(e.target.value)}
-        style={{ padding: "12px" }}
-      />
-
-      <input
-        name="image2"
-        placeholder="Second Image URL"
-        onChange={(e) => setImagePreview2(e.target.value)}
-        style={{ padding: "12px" }}
-      />
-
-      <input
-        name="image3"
-        placeholder="Third Image URL"
-        onChange={(e) => setImagePreview3(e.target.value)}
-        style={{ padding: "12px" }}
-      />
-
-      {(imagePreview || imagePreview2 || imagePreview3) && (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "12px" }}>
-          {[imagePreview, imagePreview2, imagePreview3].filter(Boolean).map((image) => (
-            <img
-              key={image}
-              src={image}
-              alt="Preview"
-              style={{
-                width: "100%",
-                height: "160px",
-                objectFit: "cover",
-                borderRadius: "10px",
-              }}
-            />
-          ))}
-        </div>
-      )}
+      <ImageUploader name="image" label="Main Listing Photo" required />
+      <ImageUploader name="image2" label="Second Listing Photo" />
+      <ImageUploader name="image3" label="Third Listing Photo" />
 
       <input name="bedrooms" type="number" placeholder="Bedrooms" required style={{ padding: "12px" }} />
       <input name="bathrooms" type="number" placeholder="Bathrooms" required style={{ padding: "12px" }} />

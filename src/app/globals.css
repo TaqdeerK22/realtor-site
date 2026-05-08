@@ -149,3 +149,51 @@ textarea {
   background: white;
   font-size: 16px;
 }
+
+.page-container {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+}
+
+.page-title {
+  font-family: var(--font-serif);
+  font-size: clamp(42px, 6vw, 72px);
+  color: var(--brown);
+  line-height: 1.05;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 4vw, 48px);
+  color: var(--brown);
+}
+
+.lead-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #5b4a43;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--brown);
+  color: white;
+}
+
+.soft-card {
+  background: rgba(255,255,255,0.86);
+  border: 1px solid rgba(222,209,189,0.8);
+  border-radius: 26px;
+  box-shadow: 0 18px 50px rgba(104,59,43,0.10);
+}

@@ -2,15 +2,17 @@ export default function Footer() {
   return (
     <footer
       style={{
-        padding: "30px 40px",
-        marginTop: "40px",
-        background: "#111",
-        color: "white",
+        padding: "40px",
+        background: "#683B2B",
+        color: "#FAF6F2",
         textAlign: "center",
       }}
     >
-      <p>© 2026 RealtorSite. All rights reserved.</p>
-      <p>Helping buyers and sellers across British Columbia.</p>
+      <h2 style={{ fontFamily: "var(--font-serif)", marginBottom: "8px" }}>
+        Lovepreet Realty
+      </h2>
+      <p>Belonging has a doorstep.</p>
+      <p style={{ opacity: 0.8 }}>© 2026 Lovepreet Realty. All rights reserved.</p>
     </footer>
   );
 }

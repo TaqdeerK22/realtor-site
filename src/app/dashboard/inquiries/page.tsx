@@ -15,7 +15,7 @@ export default async function InquiriesPage() {
   });
 
   return (
-    <main className="fade-up" className="page-motion" style={{ padding: "40px" }}>
+    <main className="fade-up page-motion" style={{ padding: "40px" }}>
       <Link href="/dashboard">← Back to Dashboard</Link>
 
       <h1>Customer Inquiries</h1>

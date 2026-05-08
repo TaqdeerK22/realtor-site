@@ -12,7 +12,7 @@ export default async function DashboardPage() {
   const totalSubscribers = await prisma.subscriber.count();
 
   return (
-    <main className="fade-up" className="page-motion" style={{ padding: "40px" }}>
+    <main className="fade-up page-motion" style={{ padding: "40px" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h1>Admin Dashboard</h1>
         <LogoutButton />

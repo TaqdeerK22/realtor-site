@@ -11,7 +11,7 @@ export default async function DashboardTestimonialsPage() {
   });
 
   return (
-    <main className="fade-up" className="page-motion" style={{ padding: "40px" }}>
+    <main className="fade-up page-motion" style={{ padding: "40px" }}>
       <Link href="/dashboard">← Back to Dashboard</Link>
 
       <h1>Manage Testimonials</h1>
