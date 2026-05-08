@@ -1,6 +1,7 @@
 import Navbar from "../../components/Navbar";
 import ListingCard from "../../components/ListingCard";
 import { prisma } from "../../lib/prisma";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -28,7 +29,6 @@ export default async function ListingsPage({
   const sort = params.sort || "newest";
 
   let orderBy: any = { createdAt: "desc" };
-
   if (sort === "price-low") orderBy = { price: "asc" };
   if (sort === "price-high") orderBy = { price: "desc" };
   if (sort === "views") orderBy = { views: "desc" };
@@ -36,25 +36,11 @@ export default async function ListingsPage({
   const listings = await prisma.listing.findMany({
     where: {
       status: "active",
-      location: {
-        contains: location,
-        mode: "insensitive",
-      },
-      price: {
-        gte: minPrice,
-        lte: maxPrice,
-      },
-      bedrooms: {
-        gte: bedrooms,
-      },
-      bathrooms: {
-        gte: bathrooms,
-      },
-      propertyType: propertyType
-        ? {
-            equals: propertyType,
-          }
-        : undefined,
+      location: { contains: location, mode: "insensitive" },
+      price: { gte: minPrice, lte: maxPrice },
+      bedrooms: { gte: bedrooms },
+      bathrooms: { gte: bathrooms },
+      propertyType: propertyType ? { equals: propertyType } : undefined,
     },
     orderBy,
   });
@@ -63,50 +49,69 @@ export default async function ListingsPage({
     <>
       <Navbar />
 
-      <main className="fade-up page-motion" style={{ padding: "40px" }}>
-        <h1>Listings</h1>
+      <main className="fade-up site-page">
+        <div className="site-container">
+          <section className="site-card" style={{ marginBottom: "34px" }}>
+            <p style={{ color: "#B08401", letterSpacing: "3px", textTransform: "uppercase", fontWeight: 700 }}>
+              Explore Properties
+            </p>
 
-        <form style={{ display: "flex", gap: "12px", marginBottom: "30px", flexWrap: "wrap" }}>
-          <input name="location" placeholder="Location" defaultValue={location} style={{ padding: "12px" }} />
-          <input name="minPrice" type="number" placeholder="Min Price" defaultValue={params.minPrice || ""} style={{ padding: "12px" }} />
-          <input name="maxPrice" type="number" placeholder="Max Price" defaultValue={params.maxPrice || ""} style={{ padding: "12px" }} />
-          <input name="bedrooms" type="number" placeholder="Min Bedrooms" defaultValue={params.bedrooms || ""} style={{ padding: "12px" }} />
-          <input name="bathrooms" type="number" placeholder="Min Bathrooms" defaultValue={params.bathrooms || ""} style={{ padding: "12px" }} />
+            <h1 className="site-title">Find a place that feels like home.</h1>
 
-          <select name="propertyType" defaultValue={propertyType} style={{ padding: "12px" }}>
-            <option value="">All Property Types</option>
-            <option value="House">House</option>
-            <option value="Condo">Condo</option>
-            <option value="Townhouse">Townhouse</option>
-            <option value="Land">Land</option>
-          </select>
+            <p className="site-text">
+              Browse active listings and filter by city, price, bedrooms, bathrooms, and property type.
+            </p>
 
-          <select name="sort" defaultValue={sort} style={{ padding: "12px" }}>
-            <option value="newest">Newest</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="views">Most Viewed</option>
-          </select>
+            <form
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                gap: "14px",
+                marginTop: "26px",
+              }}
+            >
+              <input name="location" placeholder="Location" defaultValue={location} />
+              <input name="minPrice" type="number" placeholder="Min Price" defaultValue={params.minPrice || ""} />
+              <input name="maxPrice" type="number" placeholder="Max Price" defaultValue={params.maxPrice || ""} />
+              <input name="bedrooms" type="number" placeholder="Min Bedrooms" defaultValue={params.bedrooms || ""} />
+              <input name="bathrooms" type="number" placeholder="Min Bathrooms" defaultValue={params.bathrooms || ""} />
 
-          <button type="submit" style={{ padding: "12px 20px" }}>
-            Search
-          </button>
+              <select name="propertyType" defaultValue={propertyType} style={{ padding: "16px" }}>
+                <option value="">All Property Types</option>
+                <option value="House">House</option>
+                <option value="Condo">Condo</option>
+                <option value="Townhouse">Townhouse</option>
+                <option value="Land">Land</option>
+              </select>
 
-          <a href="/listings" style={{ padding: "12px 20px", border: "1px solid #ccc", borderRadius: "8px" }}>
-            Clear Filters
-          </a>
+              <select name="sort" defaultValue={sort} style={{ padding: "16px" }}>
+                <option value="newest">Newest</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="views">Most Viewed</option>
+              </select>
 
-          <a href="/listings" style={{ padding: "12px 20px", border: "1px solid #ccc", borderRadius: "8px" }}>
-            Clear Filters
-          </a>
-        </form>
+              <button type="submit" className="site-button site-button-primary">
+                Search
+              </button>
 
-        {listings.length === 0 && <p>No active listings found.</p>}
+              <Link href="/listings" className="site-button site-button-light">
+                Clear Filters
+              </Link>
+            </form>
+          </section>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "24px" }}>
-          {listings.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
-          ))}
+          {listings.length === 0 && (
+            <section className="site-card" style={{ textAlign: "center" }}>
+              <p className="site-text">No active listings found.</p>
+            </section>
+          )}
+
+          <div className="site-grid">
+            {listings.map((listing) => (
+              <ListingCard key={listing.id} listing={listing} />
+            ))}
+          </div>
         </div>
       </main>
     </>
