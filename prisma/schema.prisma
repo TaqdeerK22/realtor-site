@@ -1,0 +1,45 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Listing {
+  id           String   @id @default(cuid())
+  title        String
+  price        Int
+  location     String
+  image        String
+  images       String[]
+  bedrooms     Int
+  bathrooms    Int
+  sqft         Int
+  description  String
+  propertyType String   @default("House")
+  status       String   @default("active")
+  views        Int      @default(0)
+  createdAt    DateTime @default(now())
+
+  inquiries    Inquiry[]
+}
+
+model Inquiry {
+  id        String   @id @default(cuid())
+  listingId String?
+  listing   Listing? @relation(fields: [listingId], references: [id])
+
+  name      String
+  email     String
+  phone     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model Subscriber {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  createdAt DateTime @default(now())
+}
