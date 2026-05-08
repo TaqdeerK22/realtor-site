@@ -34,7 +34,7 @@ export default async function HomePage() {
 
           <img
             className="floaty"
-            src="https://images.unsplash.com/photo-1568605114967-8130f3a36994"
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
             alt="Luxury home"
             style={{
               position: "absolute",
@@ -50,7 +50,7 @@ export default async function HomePage() {
 
           <img
             className="drift"
-            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
+            src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde"
             alt="Modern home"
             style={{
               position: "absolute",
