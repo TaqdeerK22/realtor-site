@@ -18,7 +18,7 @@ export default async function EditListingPage({
   }
 
   return (
-    <main style={{ padding: "40px", maxWidth: "700px" }}>
+    <main className="fade-up" style={{ padding: "40px", maxWidth: "700px" }}>
       <Link href="/dashboard/listings">← Back to Manage Listings</Link>
       <h1>Edit Listing</h1>
       <EditListingForm listing={listing} />

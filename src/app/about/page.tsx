@@ -6,7 +6,7 @@ export default function AboutPage() {
     <>
       <Navbar />
 
-      <main className="page-motion" style={{ padding: "40px", maxWidth: "1000px", margin: "0 auto" }}>
+      <main className="fade-up" className="page-motion" style={{ padding: "40px", maxWidth: "1000px", margin: "0 auto" }}>
         <h1>About Your Realtor</h1>
 
         <p style={{ fontSize: "18px", lineHeight: "1.7" }}>

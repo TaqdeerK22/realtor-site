@@ -3,7 +3,7 @@ import LoginForm from "../../components/LoginForm";
 
 export default function LoginPage() {
   return (
-    <main
+    <main className="fade-up"
       style={{
         minHeight: "100vh",
         display: "flex",

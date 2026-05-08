@@ -26,7 +26,7 @@ export default async function ListingDetailsPage({
 
   if (!listing) {
     return (
-      <main style={{ padding: "40px" }}>
+      <main className="fade-up" style={{ padding: "40px" }}>
         <Link href="/listings">← Back to Listings</Link>
         <h1>Listing not found</h1>
       </main>
