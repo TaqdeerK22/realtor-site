@@ -2,10 +2,12 @@ import { prisma } from "../../../../lib/prisma";
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   await prisma.testimonial.delete({
-    where: { id: params.id },
+    where: { id },
   });
 
   return Response.json({ success: true });

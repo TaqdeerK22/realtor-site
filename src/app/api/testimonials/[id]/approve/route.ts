@@ -2,10 +2,12 @@ import { prisma } from "../../../../../lib/prisma";
 
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params;
+
   const testimonial = await prisma.testimonial.update({
-    where: { id: params.id },
+    where: { id },
     data: { approved: true },
   });
 
