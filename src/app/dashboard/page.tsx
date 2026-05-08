@@ -31,6 +31,7 @@ export default async function DashboardPage() {
         <Link href="/dashboard/listings/new">Add New Listing</Link>
         <Link href="/dashboard/inquiries">View Inquiries</Link>
         <Link href="/dashboard/subscribers">View Subscribers</Link>
+        <Link href="/dashboard/testimonials">Manage Testimonials</Link>
         <Link href="/listings">View Public Website</Link>
       </div>
     </main>

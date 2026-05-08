@@ -68,8 +68,8 @@ export default function Navbar() {
         <Link href="/recently-viewed">Recently Viewed</Link>
         <Link href="/about">About</Link>
         <Link href="/contact">Contact</Link>
-        <Link href="/login">Login</Link>
-        <Link href="/dashboard">Dashboard</Link>
+        <Link href="/testimonial">Testimonial</Link>
+        <Link href="/login">Realtor Login</Link>
       </div>
     </nav>
   );

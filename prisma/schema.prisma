@@ -43,3 +43,12 @@ model Subscriber {
   email     String   @unique
   createdAt DateTime @default(now())
 }
+
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  message   String
+  approved  Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

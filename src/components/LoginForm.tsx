@@ -7,15 +7,21 @@ export default function LoginForm() {
   const router = useRouter();
   const [error, setError] = useState("");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const password = formData.get("password");
 
-    if (password === "admin123") {
-      localStorage.setItem("isAdmin", "true");
+    const res = await fetch("/api/auth/login", {
+      method: "POST",
+      body: JSON.stringify({
+        password: formData.get("password"),
+      }),
+    });
+
+    if (res.ok) {
       router.push("/dashboard");
+      router.refresh();
     } else {
       setError("Wrong password.");
     }
@@ -26,13 +32,13 @@ export default function LoginForm() {
       <input
         type="password"
         name="password"
-        placeholder="Enter admin password"
+        placeholder="Enter realtor admin password"
         required
         style={{ padding: "12px" }}
       />
 
       <button type="submit" style={{ padding: "14px", background: "black", color: "white" }}>
-        Login
+        Realtor Login
       </button>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
