@@ -15,7 +15,7 @@ export default function TestimonialsPage() {
           Your testimonial will be reviewed by the realtor before it appears on the website.
         </p>
 
-        <div className="card" style={{ padding: "30px", marginTop: "24px" }}>
+        <div className="site-card" style={{ padding: "30px", marginTop: "24px" }}>
           <TestimonialForm />
         </div>
       </main>

@@ -4,7 +4,6 @@ import ListingCard from "../components/ListingCard";
 import Link from "next/link";
 import { prisma } from "../lib/prisma";
 import Testimonials from "../components/Testimonials";
-import Footer from "../components/Footer";
 
 export const dynamic = "force-dynamic";
 
@@ -97,7 +96,7 @@ export default async function HomePage() {
 
             <div style={{ display: "flex", gap: "18px", flexWrap: "wrap" }}>
               <Link href="/listings">
-                <button className="luxury-button">Explore Properties</button>
+                <button className="site-button site-button-primary">Explore Properties</button>
               </Link>
 
               <Link href="/contact">
@@ -157,13 +156,10 @@ export default async function HomePage() {
         <Testimonials />
 
         <section className="section-padding" style={{ background: "linear-gradient(135deg, #683B2B, #D49E8D)", color: "white", textAlign: "center" }}>
-          <h2 style={{ fontSize: "42px" }}>Get New Listing Alerts</h2>
-          <p>Subscribe and receive updates when new properties are added.</p>
           <SubscribeForm />
         </section>
       </main>
 
-      <Footer />
     </>
   );
 }

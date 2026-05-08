@@ -9,7 +9,7 @@ export default function AboutPage() {
       <main className="fade-up page-motion" style={{ padding: "70px 0" }}>
         <div className="page-container">
           <section
-            className="soft-card"
+            className="site-card"
             style={{
               padding: "60px",
               maxWidth: "900px",
@@ -66,7 +66,7 @@ export default function AboutPage() {
 
             <div style={{ marginTop: "36px" }}>
               <Link href="/contact">
-                <button className="btn btn-primary">
+                <button className="site-button site-button-primary">
                   Contact Lovepreet
                 </button>
               </Link>

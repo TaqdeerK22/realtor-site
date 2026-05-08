@@ -197,3 +197,137 @@ textarea {
   border-radius: 26px;
   box-shadow: 0 18px 50px rgba(104,59,43,0.10);
 }
+
+/* Consistent design system */
+.site-page {
+  padding: 72px 0;
+}
+
+.site-container {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+}
+
+.site-card {
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(222,209,189,0.8);
+  border-radius: 28px;
+  box-shadow: 0 18px 50px rgba(104,59,43,0.10);
+  padding: 32px;
+}
+
+.site-title {
+  font-family: var(--font-serif);
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.05;
+  color: var(--brown);
+  margin: 0 0 20px;
+}
+
+.site-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  color: var(--brown);
+  margin: 0 0 18px;
+}
+
+.site-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #5b4a43;
+}
+
+.site-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+}
+
+.site-button-primary {
+  background: var(--gold);
+  color: white;
+}
+
+.site-button-secondary {
+  background: var(--brown);
+  color: white;
+}
+
+.site-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Consistent design system */
+.site-page {
+  padding: 72px 0;
+}
+
+.site-container {
+  width: min(1180px, 92%);
+  margin: 0 auto;
+}
+
+.site-card {
+  background: rgba(255,255,255,0.88);
+  border: 1px solid rgba(222,209,189,0.8);
+  border-radius: 28px;
+  box-shadow: 0 18px 50px rgba(104,59,43,0.10);
+  padding: 32px;
+}
+
+.site-title {
+  font-family: var(--font-serif);
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1.05;
+  color: var(--brown);
+  margin: 0 0 20px;
+}
+
+.site-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  color: var(--brown);
+  margin: 0 0 18px;
+}
+
+.site-text {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #5b4a43;
+}
+
+.site-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+}
+
+.site-button-primary {
+  background: var(--gold);
+  color: white;
+}
+
+.site-button-secondary {
+  background: var(--brown);
+  color: white;
+}
+
+.site-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
