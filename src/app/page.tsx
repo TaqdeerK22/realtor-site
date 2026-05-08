@@ -100,7 +100,7 @@ export default async function HomePage() {
               </Link>
 
               <Link href="/contact">
-                <button style={{ padding: "16px 32px", borderRadius: "999px", background: "#683B2B", color: "white", fontWeight: 700 }}>
+                <button className="site-button site-button-secondary">
                   Schedule Consultation
                 </button>
               </Link>

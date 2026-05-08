@@ -39,14 +39,7 @@ export default function Navbar() {
         <Link href="/contact">Contact</Link>
 
         <Link href="/login">
-          <button
-            style={{
-              background: "#683B2B",
-              color: "white",
-              padding: "14px 26px",
-              borderRadius: "999px",
-              fontWeight: 700,
-            }}
+          <button className="site-button site-button-secondary"
           >
             Realtor Login
           </button>

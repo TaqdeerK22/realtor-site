@@ -21,15 +21,7 @@ export default function DeleteSubscriberButton({ id }: { id: string }) {
   }
 
   return (
-    <button
-      onClick={handleDelete}
-      style={{
-        background: "red",
-        color: "white",
-        border: "none",
-        padding: "8px 12px",
-        borderRadius: "6px",
-      }}
+    <button className="site-button site-button-danger site-button-small"
     >
       Delete
     </button>

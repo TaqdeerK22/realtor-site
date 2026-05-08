@@ -331,3 +331,69 @@ textarea {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
+
+/* FINAL UNIFIED BUTTON SYSTEM */
+button,
+.site-button,
+a.site-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 48px;
+  padding: 14px 30px;
+
+  border-radius: 999px;
+  border: none;
+
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
+}
+
+button:hover,
+.site-button:hover,
+a.site-button:hover {
+  transform: translateY(-3px);
+  opacity: 0.94;
+  box-shadow: 0 12px 28px rgba(104, 59, 43, 0.18);
+}
+
+.site-button-primary,
+button {
+  background: var(--gold);
+  color: white;
+}
+
+.site-button-secondary {
+  background: var(--brown);
+  color: white;
+}
+
+.site-button-light {
+  background: var(--cream);
+  color: var(--brown);
+  border: 1px solid var(--sand);
+}
+
+.site-button-danger {
+  background: #9b2c2c;
+  color: white;
+}
+
+.site-button-small {
+  min-height: 40px;
+  padding: 10px 20px;
+  font-size: 14px;
+}
