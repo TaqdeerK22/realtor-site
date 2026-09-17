@@ -8,6 +8,31 @@ import ImageGallery from "../../../components/ImageGallery";
 
 export const dynamic = "force-dynamic";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const listing = await prisma.listing.findUnique({ where: { id } });
+
+  if (!listing) {
+    return { title: "Listing not found | Lovepreet Realty" };
+  }
+
+  const description = `${listing.bedrooms} bed, ${listing.bathrooms} bath ${listing.propertyType.toLowerCase()} in ${listing.location} — $${listing.price.toLocaleString()}.`;
+
+  return {
+    title: `${listing.title} | Lovepreet Realty`,
+    description,
+    openGraph: {
+      title: listing.title,
+      description,
+      images: listing.image ? [listing.image] : undefined,
+    },
+  };
+}
+
 export default async function ListingDetailsPage({
   params,
 }: {
@@ -15,14 +40,15 @@ export default async function ListingDetailsPage({
 }) {
   const { id } = await params;
 
-  const listing = await prisma.listing.update({
-    where: { id },
-    data: {
-      views: {
-        increment: 1,
-      },
-    },
-  });
+  let listing;
+  try {
+    listing = await prisma.listing.update({
+      where: { id },
+      data: { views: { increment: 1 } },
+    });
+  } catch {
+    listing = null;
+  }
 
   if (!listing) {
     return (

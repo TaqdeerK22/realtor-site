@@ -12,8 +12,21 @@ const sans = Manrope({
 });
 
 export const metadata = {
-  title: "Lovepreet Realty",
-  description: "Luxury real estate",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
+  title: {
+    default: "Lovepreet Realty | BC Real Estate",
+    template: "%s | Lovepreet Realty",
+  },
+  description:
+    "Buy, sell, or invest in BC real estate with honest guidance and modern tools from Lovepreet Realty.",
+  openGraph: {
+    title: "Lovepreet Realty | BC Real Estate",
+    description:
+      "Buy, sell, or invest in BC real estate with honest guidance and modern tools from Lovepreet Realty.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

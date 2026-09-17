@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Navbar from "../components/Navbar";
 import SubscribeForm from "../components/SubscribeForm";
 import ListingCard from "../components/ListingCard";
@@ -32,36 +33,21 @@ export default async function HomePage() {
         >
           <div className="hero-bg" />
 
-          <img
-            className="floaty"
+          <Image
+            className="floaty hero-photo hero-photo-1"
             src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
-            alt="Luxury home"
-            style={{
-              position: "absolute",
-              right: "7%",
-              top: "18%",
-              width: "360px",
-              height: "250px",
-              objectFit: "cover",
-              borderRadius: "34px",
-              boxShadow: "0 25px 60px rgba(104,59,43,0.22)",
-            }}
+            alt="Luxury home exterior"
+            width={360}
+            height={250}
+            priority
           />
 
-          <img
-            className="drift"
+          <Image
+            className="drift hero-photo hero-photo-2"
             src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde"
-            alt="Modern home"
-            style={{
-              position: "absolute",
-              right: "20%",
-              bottom: "15%",
-              width: "260px",
-              height: "180px",
-              objectFit: "cover",
-              borderRadius: "28px",
-              boxShadow: "0 20px 45px rgba(104,59,43,0.2)",
-            }}
+            alt="Modern home exterior"
+            width={260}
+            height={180}
           />
 
           <div

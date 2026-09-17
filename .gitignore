@@ -1,4 +1,15 @@
 node_modules
 .next
 .env
+.env*.local
 .DS_Store
+
+# IDE
+.idea
+*.iml
+
+# Vercel
+.vercel
+
+# Logs
+*.log

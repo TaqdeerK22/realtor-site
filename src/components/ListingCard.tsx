@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import ListingBadge from "./ListingBadge";
 
@@ -12,15 +13,13 @@ export default function ListingCard({ listing }: { listing: any }) {
         boxShadow: "0 4px 14px rgba(0,0,0,0.08)",
       }}
     >
-      <div style={{ position: "relative" }}>
-        <img
+      <div style={{ position: "relative", height: "260px" }}>
+        <Image
           src={listing.image}
           alt={listing.title}
-          style={{
-            width: "100%",
-            height: "260px",
-            objectFit: "cover",
-          }}
+          fill
+          style={{ objectFit: "cover" }}
+          sizes="(max-width: 768px) 100vw, 33vw"
         />
 
         <div
