@@ -2,7 +2,7 @@
 
 A full-stack real estate website for a single realtor, built with Next.js (App Router), PostgreSQL, and Prisma. It gives a realtor a public-facing site for listings and leads, plus a private admin dashboard to manage everything without touching code.
 
-**Live demo:** [realtor-site-peach.vercel.app](https://realtor-site-peach.vercel.app)
+**Live demo:** [realtor-site.vercel.app](https://lovepreetrealty.vercel.app)
 
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
