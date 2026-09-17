@@ -1,4 +1,4 @@
-# Lovepreet Realty
+# Realtor Site
 
 A full-stack real estate website for a single realtor, built with Next.js (App Router), PostgreSQL, and Prisma. It gives a realtor a public-facing site for listings and leads, plus a private admin dashboard to manage everything without touching code.
 
