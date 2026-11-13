@@ -36,12 +36,9 @@ Many independent realtors rely on outdated templates or a single brokerage page 
 - Approve testimonials before they go public
 
 ## Screenshots
+![Search listings dashboard](docs/admin-listings.png)
 
-### Browsing listings
-
-| Search and filters | Listing details |
-|---|---|
-| ![Listings page](docs/listings.png) | ![Listing details](docs/listing-details.png) |
+The public site is live, so explore the homepage, listing pages, mortgage calculator and mobile layout at the [demo](https://lovepreetrealty.vercel.app).
 
 ## Tech stack
 
