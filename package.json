@@ -33,5 +33,8 @@
     "@types/react": "^19.2.14",
     "tsx": "^4.23.15",
     "typescript": "^6.0.3"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   }
 }
