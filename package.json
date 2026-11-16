@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
+    "mcp": "tsx mcp/server.ts",
     "build": "next build",
     "start": "next start",
     "postinstall": "prisma generate"
@@ -14,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@modelcontextprotocol/server": "^2.4.0",
     "@prisma/client": "^5.22.0",
     "dotenv": "^17.4.2",
     "framer-motion": "^12.38.0",
@@ -23,11 +25,13 @@
     "prisma": "^5.22.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "resend": "^6.12.3"
+    "resend": "^6.12.3",
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/node": "^25.6.2",
     "@types/react": "^19.2.14",
+    "tsx": "^4.23.15",
     "typescript": "^6.0.3"
   }
 }
