@@ -9,10 +9,10 @@ export default function Footer() {
       }}
     >
       <h2 style={{ fontFamily: "var(--font-serif)", marginBottom: "8px" }}>
-        Lovepreet Realty
+        Mark Realty
       </h2>
       <p>Belonging has a doorstep.</p>
-      <p style={{ opacity: 0.8 }}>© 2026 Lovepreet Realty. All rights reserved.</p>
+      <p style={{ opacity: 0.8 }}>© 2026 Mark Realty. All rights reserved.</p>
     </footer>
   );
 }
