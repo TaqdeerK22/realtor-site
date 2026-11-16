@@ -2,7 +2,7 @@
 
 A modern, mobile-friendly website template for independent real estate agents, built as a live demo of what a realtor's online presence can look like: clean design, easy for clients to use, and simple for the agent to manage. It includes a public listings site that captures leads and a private admin dashboard for managing everything without touching code.
 
-**Live demo:** [realty.vercel.app](https://lovepreetrealty.vercel.app)
+**Live demo:** [realty.vercel.app](https://markrealty.vercel.app)
 
 > Listings, photos and testimonials in the demo are sample content.
 
