@@ -17,13 +17,13 @@ export async function generateMetadata({
   const listing = await prisma.listing.findUnique({ where: { id } });
 
   if (!listing) {
-    return { title: "Listing not found | Lovepreet Realty" };
+    return { title: "Listing not found | Mark Realty" };
   }
 
   const description = `${listing.bedrooms} bed, ${listing.bathrooms} bath ${listing.propertyType.toLowerCase()} in ${listing.location} — $${listing.price.toLocaleString()}.`;
 
   return {
-    title: `${listing.title} | Lovepreet Realty`,
+    title: `${listing.title} | Mark Realty`,
     description,
     openGraph: {
       title: listing.title,

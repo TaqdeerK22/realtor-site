@@ -37,7 +37,7 @@ export default function Navbar() {
           fontFamily: "var(--font-serif)",
         }}
       >
-        Lovepreet Realty
+        Mark Realty
       </Link>
 
       <div style={{ display: "flex", gap: "26px", alignItems: "center", flexWrap: "wrap" }}>

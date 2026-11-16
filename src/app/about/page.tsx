@@ -27,16 +27,16 @@ export default function AboutPage() {
               About Your Realtor
             </p>
 
-            <h1 className="page-title">Lovepreet Singh</h1>
+            <h1 className="page-title">Mark S</h1>
 
             <p className="lead-text">
-              Lovepreet Singh is passionate about helping people find more than
+              Mark S is passionate about helping people find more than
               just a property — he helps them find confidence, comfort, and a
               place where their next chapter can begin.
             </p>
 
             <p className="lead-text">
-              With a people-first approach, Lovepreet focuses on clear
+              With a people-first approach, Mark focuses on clear
               communication, honest guidance, and making the buying or selling
               process feel less stressful and more meaningful.
             </p>
@@ -60,14 +60,14 @@ export default function AboutPage() {
 
             <p className="lead-text">
               Whether you are buying your first home, selling your current
-              property, or simply exploring your options, Lovepreet is ready to
+              property, or simply exploring your options, Mark is ready to
               listen, guide, and help you move forward with clarity.
             </p>
 
             <div style={{ marginTop: "36px" }}>
               <Link href="/contact">
                 <button className="site-button site-button-primary">
-                  Contact Lovepreet
+                  Contact Mark
                 </button>
               </Link>
             </div>

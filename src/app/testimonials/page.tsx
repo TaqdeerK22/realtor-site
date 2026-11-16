@@ -24,7 +24,7 @@ export default function TestimonialsPage() {
               <h1 className="site-title">Share your experience.</h1>
 
               <p className="site-text">
-                Your testimonial helps future clients understand what it feels like to work with Lovepreet Singh.
+                Your testimonial helps future clients understand what it feels like to work with Mark S.
                 Every message is reviewed before appearing on the website.
               </p>
 

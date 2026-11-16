@@ -24,7 +24,7 @@ export default function ContactPage() {
               <h1 className="site-title">Let’s talk about your next move.</h1>
 
               <p className="site-text">
-                Whether you are buying, selling, or just exploring your options, Lovepreet Singh is ready to help you move forward with clarity and confidence.
+                Whether you are buying, selling, or just exploring your options, Mark S is ready to help you move forward with clarity and confidence.
               </p>
 
               <blockquote
