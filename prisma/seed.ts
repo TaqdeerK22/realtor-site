@@ -12,7 +12,7 @@ async function main() {
     throw new Error("Seeding is allowed only for the local database.");
   }
 
-  // Demo listing â€” not an actual property for sale.
+  // Demo listing - not an actual property for sale.
   const listing = await prisma.listing.upsert({
     where: { id: "demo-mark-realty-001" },
 
