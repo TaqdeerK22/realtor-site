@@ -1,9 +1,10 @@
 "use client";
 
+import type { Listing } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function EditListingForm({ listing }: { listing: any }) {
+export default function EditListingForm({ listing }: { listing: Listing }) {
   const router = useRouter();
   const [status, setStatus] = useState("");
 

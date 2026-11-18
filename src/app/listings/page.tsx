@@ -2,8 +2,16 @@ import Navbar from "../../components/Navbar";
 import ListingCard from "../../components/ListingCard";
 import { prisma } from "../../lib/prisma";
 import Link from "next/link";
+import type { Prisma } from "@prisma/client";
 
 export const dynamic = "force-dynamic";
+
+// Ignore junk in the URL (e.g. ?maxPrice=abc) instead of crashing the page.
+function toNumber(value?: string): number | undefined {
+  if (!value) return undefined;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : undefined;
+}
 
 export default async function ListingsPage({
   searchParams,
@@ -21,14 +29,14 @@ export default async function ListingsPage({
   const params = await searchParams;
 
   const location = params.location || "";
-  const minPrice = params.minPrice ? Number(params.minPrice) : undefined;
-  const maxPrice = params.maxPrice ? Number(params.maxPrice) : undefined;
-  const bedrooms = params.bedrooms ? Number(params.bedrooms) : undefined;
-  const bathrooms = params.bathrooms ? Number(params.bathrooms) : undefined;
+  const minPrice = toNumber(params.minPrice);
+  const maxPrice = toNumber(params.maxPrice);
+  const bedrooms = toNumber(params.bedrooms);
+  const bathrooms = toNumber(params.bathrooms);
   const propertyType = params.propertyType || "";
   const sort = params.sort || "newest";
 
-  let orderBy: any = { createdAt: "desc" };
+  let orderBy: Prisma.ListingOrderByWithRelationInput = { createdAt: "desc" };
   if (sort === "price-low") orderBy = { price: "asc" };
   if (sort === "price-high") orderBy = { price: "desc" };
   if (sort === "views") orderBy = { views: "desc" };

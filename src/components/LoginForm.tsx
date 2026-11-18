@@ -22,6 +22,10 @@ export default function LoginForm() {
     if (res.ok) {
       router.push("/dashboard");
       router.refresh();
+    } else if (res.status === 429) {
+      setError("Too many attempts. Please wait a few minutes and try again.");
+    } else if (res.status === 503) {
+      setError("Admin login isn't configured on this server yet.");
     } else {
       setError("Wrong password.");
     }

@@ -1,8 +1,13 @@
 import { prisma } from "../../../lib/prisma";
+import { limitRequest } from "../../../lib/rate-limit";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
+  // 5 inquiries per 10 minutes per IP.
+  const limited = limitRequest(req, "inquiry", 5, 10 * 60 * 1000);
+  if (limited) return limited;
+
   let body: Record<string, unknown>;
 
   try {
@@ -45,11 +50,11 @@ export async function POST(req: Request) {
   }
 
   try {
-    const inquiry = await prisma.inquiry.create({
+    await prisma.inquiry.create({
       data: { listingId, name, email, phone, message },
     });
 
-    return Response.json({ success: true, inquiry });
+    return Response.json({ success: true });
   } catch (error) {
     console.error("Failed to create inquiry:", error);
     return Response.json(

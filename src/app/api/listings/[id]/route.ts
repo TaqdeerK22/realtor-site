@@ -1,40 +1,50 @@
 import { prisma } from "../../../../lib/prisma";
+import { requireAdmin } from "../../../../lib/auth";
+import { handleNotFound } from "../../../../lib/api";
+import {
+  invalid,
+  listingSchema,
+  readJson,
+} from "../../../../lib/validation";
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+type Context = { params: Promise<{ id: string }> };
+
+export async function DELETE(req: Request, { params }: Context) {
+  const denied = await requireAdmin(req);
+  if (denied) return denied;
+
   const { id } = await params;
 
-  await prisma.listing.delete({
-    where: { id },
-  });
-
-  return Response.json({ success: true });
+  try {
+    await prisma.listing.delete({ where: { id } });
+    return Response.json({ success: true });
+  } catch (error) {
+    return handleNotFound(error);
+  }
 }
 
-export async function PUT(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PUT(req: Request, { params }: Context) {
+  const denied = await requireAdmin(req);
+  if (denied) return denied;
+
   const { id } = await params;
-  const body = await req.json();
 
-  const listing = await prisma.listing.update({
-    where: { id },
-    data: {
-      title: String(body.title),
-      price: Number(body.price),
-      location: String(body.location),
-      image: String(body.image),
-      images: body.images || [body.image],
-      bedrooms: Number(body.bedrooms),
-      bathrooms: Number(body.bathrooms),
-      sqft: Number(body.sqft),
-      description: String(body.description),
-      propertyType: String(body.propertyType || "House"),
-    },
-  });
+  const parsed = listingSchema.safeParse(await readJson(req));
+  if (!parsed.success) return invalid(parsed.error);
 
-  return Response.json({ success: true, listing });
+  const { images, ...data } = parsed.data;
+
+  try {
+    const listing = await prisma.listing.update({
+      where: { id },
+      data: {
+        ...data,
+        images: images && images.length > 0 ? images : [data.image],
+      },
+    });
+
+    return Response.json({ success: true, listing });
+  } catch (error) {
+    return handleNotFound(error);
+  }
 }

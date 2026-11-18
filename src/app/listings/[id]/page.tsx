@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { prisma } from "../../../lib/prisma";
 import InquiryForm from "../../../components/InquiryForm";
 import ShareListingButton from "../../../components/ShareListingButton";
@@ -14,7 +15,9 @@ export async function generateMetadata({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const listing = await prisma.listing.findUnique({ where: { id } });
+  const listing = await prisma.listing.findFirst({
+    where: { id, status: "active" },
+  });
 
   if (!listing) {
     return { title: "Listing not found | Mark Realty" };
@@ -40,24 +43,15 @@ export default async function ListingDetailsPage({
 }) {
   const { id } = await params;
 
-  let listing;
-  try {
-    listing = await prisma.listing.update({
-      where: { id },
+  // Suspended listings are hidden from the public, so they 404 like missing ones.
+  const listing = await prisma.listing
+    .update({
+      where: { id, status: "active" },
       data: { views: { increment: 1 } },
-    });
-  } catch {
-    listing = null;
-  }
+    })
+    .catch(() => null);
 
-  if (!listing) {
-    return (
-      <main className="fade-up" style={{ padding: "40px" }}>
-        <Link href="/listings">← Back to Listings</Link>
-        <h1>Listing not found</h1>
-      </main>
-    );
-  }
+  if (!listing) notFound();
 
   return (
     <main style={{ padding: "40px" }}>
