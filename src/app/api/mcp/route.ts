@@ -1,7 +1,6 @@
-
 import { createMcpHandler } from "@modelcontextprotocol/server";
 import { createServer } from "../../../../mcp/tools";
-import { timingSafeEqual } from "node:crypto";
+import { safeEqual } from "../../../lib/security";
 
 // The MCP server must run in the Node.js runtime.
 export const runtime = "nodejs";
@@ -10,14 +9,6 @@ export const runtime = "nodejs";
 const handler = createMcpHandler(createServer, {
   responseMode: "json",
 });
-
-// Compare tokens without leaking differences in timing.
-function validToken(provided: string, expected: string): boolean {
-  const a = Buffer.from(provided);
-  const b = Buffer.from(expected);
-
-  return a.length === b.length && timingSafeEqual(a, b);
-}
 
 async function handleRequest(request: Request): Promise<Response> {
   const secret = process.env.MCP_API_TOKEN;
@@ -42,7 +33,7 @@ async function handleRequest(request: Request): Promise<Response> {
 
   const token = authorization.slice(prefix.length);
 
-  if (!validToken(token, secret)) {
+  if (!safeEqual(token, secret)) {
     return new Response("Unauthorized", { status: 401 });
   }
 

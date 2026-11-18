@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { Listing } from "@prisma/client";
 import ListingBadge from "./ListingBadge";
 
-export default function ListingCard({ listing }: { listing: any }) {
+export default function ListingCard({ listing }: { listing: Listing }) {
   return (
     <div
       className="card-hover"

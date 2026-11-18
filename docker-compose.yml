@@ -1,26 +1,28 @@
+# Local development only: ports are bound to localhost and the credentials
+# below are throwaway defaults. Never reuse them anywhere else.
 services:
   postgres:
     image: postgres:16
     container_name: realtor_postgres
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: realtor_user
       POSTGRES_PASSWORD: realtor_password
       POSTGRES_DB: realtor_db
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     volumes:
       - realtor_postgres_data:/var/lib/postgresql/data
 
   pgadmin:
     image: dpage/pgadmin4
     container_name: realtor_pgadmin
-    restart: always
+    restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@realtor.com
       PGADMIN_DEFAULT_PASSWORD: admin123
     ports:
-      - "5050:80"
+      - "127.0.0.1:5050:80"
 
 volumes:
   realtor_postgres_data:

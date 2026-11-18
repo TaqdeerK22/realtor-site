@@ -1,15 +1,26 @@
+# dependencies
 node_modules
+
+# next.js
 .next
+out
+next-env.d.ts
+*.tsbuildinfo
+
+# environment files (never commit real secrets)
 .env
 .env*.local
-.DS_Store
-*.tsbuildinfo
-# IDE
+!.env.example
+
+# IDE / OS
 .idea
 *.iml
+.vscode
+.DS_Store
 
-# Vercel
+# deployment
 .vercel
 
-# Logs
+# logs and backups
 *.log
+*.backup

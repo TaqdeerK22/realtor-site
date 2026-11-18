@@ -1,15 +1,24 @@
 import { McpServer } from "@modelcontextprotocol/server";
-import { PrismaClient } from "@prisma/client";
 import * as z from "zod/v4";
-import dotenv from "dotenv";
+import { getActiveListing, searchListings } from "../src/lib/listings";
 
-// Load local environment variables.
-// Use a local/test database with public listing data.
-dotenv.config({ path: ".env.local", quiet: true });
-dotenv.config({ path: ".env", quiet: true });
+// Read-only tools: they expose public listing data and nothing else
+// (no inquiries, subscribers or admin actions).
 
-// One Prisma Client reused by all tools.
-const prisma = new PrismaClient();
+function text(value: unknown) {
+  return {
+    content: [
+      {
+        type: "text" as const,
+        text: typeof value === "string" ? value : JSON.stringify(value, null, 2),
+      },
+    ],
+  };
+}
+
+function failure(message: string) {
+  return { isError: true, content: [{ type: "text" as const, text: message }] };
+}
 
 // Create a fresh MCP server for each connection.
 export function createServer() {
@@ -18,12 +27,11 @@ export function createServer() {
     version: "1.0.0",
   });
 
-  // TOOL 1: Search active properties
   server.registerTool(
     "search_listings",
     {
       description:
-        "Search active real estate listings by location, price, bedrooms, and property type.",
+        "Search active real estate listings by location, maximum price, minimum bedrooms and property type.",
       inputSchema: z.object({
         location: z.string().optional(),
         maxPrice: z.number().nonnegative().optional(),
@@ -31,139 +39,32 @@ export function createServer() {
         propertyType: z.string().optional(),
       }),
     },
-    async ({
-      location,
-      maxPrice,
-      minBedrooms,
-      propertyType,
-    }) => {
+    async (filters) => {
       try {
-        const listings = await prisma.listing.findMany({
-          where: {
-            status: "active",
-
-            ...(location && {
-              location: {
-                contains: location,
-                mode: "insensitive" as const,
-              },
-            }),
-
-            ...(maxPrice !== undefined && {
-              price: { lte: maxPrice },
-            }),
-
-            ...(minBedrooms !== undefined && {
-              bedrooms: { gte: minBedrooms },
-            }),
-
-            ...(propertyType && {
-              propertyType: {
-                equals: propertyType,
-                mode: "insensitive" as const,
-              },
-            }),
-          },
-
-          // Only expose public listing fields
-          select: {
-            id: true,
-            title: true,
-            price: true,
-            location: true,
-            bedrooms: true,
-            bathrooms: true,
-            sqft: true,
-            propertyType: true,
-          },
-
-          orderBy: { createdAt: "desc" },
-          take: 10,
-        });
-
-        return {
-          content: [
-            {
-              type: "text" as const,
-              text: JSON.stringify(listings, null, 2),
-            },
-          ],
-        };
+        return text(await searchListings(filters, 10));
       } catch (error) {
         console.error("Listing search failed:", error);
-
-        return {
-          isError: true,
-          content: [
-            {
-              type: "text" as const,
-              text: "Unable to search listings.",
-            },
-          ],
-        };
+        return failure("Unable to search listings.");
       }
     }
   );
 
-  // TOOL 2: Retrieve one active property
   server.registerTool(
     "get_listing",
     {
-      description:
-        "Get public details for one active property listing.",
-      inputSchema: z.object({
-        id: z.string().min(1),
-      }),
+      description: "Get public details for one active property listing.",
+      inputSchema: z.object({ id: z.string().min(1) }),
     },
     async ({ id }) => {
       try {
-        const listing = await prisma.listing.findFirst({
-          where: {
-            id,
-            status: "active",
-          },
-
-          select: {
-            id: true,
-            title: true,
-            price: true,
-            location: true,
-            bedrooms: true,
-            bathrooms: true,
-            sqft: true,
-            description: true,
-            propertyType: true,
-            image: true,
-            images: true,
-          },
-        });
-
-        return {
-          content: [
-            {
-              type: "text" as const,
-              text: listing
-                ? JSON.stringify(listing, null, 2)
-                : "Active listing not found.",
-            },
-          ],
-        };
+        const listing = await getActiveListing(id);
+        return text(listing ?? "Active listing not found.");
       } catch (error) {
         console.error("Listing lookup failed:", error);
-
-        return {
-          isError: true,
-          content: [
-            {
-              type: "text" as const,
-              text: "Unable to retrieve listing.",
-            },
-          ],
-        };
+        return failure("Unable to retrieve listing.");
       }
     }
   );
 
   return server;
 }
-

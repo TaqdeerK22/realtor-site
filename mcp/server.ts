@@ -1,6 +1,7 @@
+// Load .env before anything touches the database.
+import "dotenv/config";
 import { serveStdio } from "@modelcontextprotocol/server/stdio";
 import { createServer } from "./tools";
 
-// Start the local MCP server.
-// The listing tools are defined in tools.ts.
+// Local stdio MCP server. Tools are defined in tools.ts.
 serveStdio(createServer);
