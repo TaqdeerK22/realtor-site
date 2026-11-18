@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Playfair_Display, Manrope } from "next/font/google";
+import ChatWidget from "../components/chat/ChatWidget";
 
 const serif = Playfair_Display({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${serif.variable} ${sans.variable}`}>
         {children}
+        <ChatWidget />
       </body>
     </html>
   );
