@@ -1,19 +1,23 @@
 {
-  "name": "realtorsite",
+  "name": "realtor-site",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "Full-stack real estate website with an admin dashboard, an AI chat assistant and a read-only MCP server.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
-    "mcp": "tsx mcp/server.ts",
     "build": "next build",
     "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "db:push": "prisma db push",
+    "db:seed": "prisma db seed",
+    "mcp": "tsx mcp/server.ts",
     "postinstall": "prisma generate"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@modelcontextprotocol/server": "^2.4.0",
     "@prisma/client": "^5.22.0",
