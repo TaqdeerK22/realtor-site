@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --gold: #B08401;
   --rose: #D49E8D;
   --sand: #DED1BD;
@@ -649,4 +649,65 @@ select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'%3E%3Cpath d='M1 1.5l6 6 6-6' stroke='%23683b2b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 18px center;
+}
+.chat-header .chat-actions {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-new {
+  background: rgba(255, 255, 255, 0.16);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.chat-new:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.chat-new:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.chat-close,
+.chat-new {
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+}
+
+.chat-close {
+  border-radius: 999px;
+  min-width: 36px;
+  height: 36px;
+}
+
+.chat-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+
+.chat-new:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.32);
+  box-shadow: none;
+}
+
+.chat-new:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.chat-form button:not(:disabled) {
+  cursor: pointer;
+}
+.chat-new:disabled,
+.chat-new:disabled:hover {
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }

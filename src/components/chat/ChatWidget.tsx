@@ -123,6 +123,13 @@ export default function ChatWidget() {
     }
   }
 
+  function startNewChat() {
+    if (loading) return;
+    setMessages([WELCOME]);
+    setInput("");
+    inputRef.current?.focus();
+  }
+
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     void send(input);
@@ -137,7 +144,18 @@ export default function ChatWidget() {
               <strong>Mark Realty Assistant</strong>
               <span>AI-powered · may make mistakes</span>
             </div>
-            <button
+            <div className="chat-actions">
+              {messages.length > 1 && (
+                <button
+                  type="button"
+                  className="chat-new"
+                  onClick={startNewChat}
+                  disabled={loading}
+                >
+                  New chat
+                </button>
+              )}
+              <button
               type="button"
               className="chat-close"
               onClick={() => setOpen(false)}
@@ -145,6 +163,7 @@ export default function ChatWidget() {
             >
               ×
             </button>
+            </div>
           </header>
 
           <div className="chat-messages" role="log" aria-live="polite">
