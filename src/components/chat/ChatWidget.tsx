@@ -37,6 +37,8 @@ const SUGGESTIONS = [
 // The assistant is for visitors, so keep it out of the admin area.
 const HIDDEN_PREFIXES = ["/dashboard", "/login"];
 
+const STORAGE_KEY = "mark-realty-chat-v1";
+
 export default function ChatWidget() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -46,6 +48,42 @@ export default function ChatWidget() {
 
   const endRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Keep the conversation when the page reloads or the visitor changes pages.
+  const [restored, setRestored] = useState(false);
+
+  useEffect(() => {
+    try {
+      const raw = sessionStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const saved = JSON.parse(raw) as { open?: boolean; messages?: Message[] };
+        const valid = Array.isArray(saved.messages)
+          ? saved.messages.filter(
+              (m) =>
+                (m.role === "user" || m.role === "assistant") &&
+                typeof m.content === "string"
+            )
+          : [];
+        if (valid.length > 0) setMessages(valid);
+        if (saved.open) setOpen(true);
+      }
+    } catch {
+      // Ignore unreadable or unavailable storage.
+    }
+    setRestored(true);
+  }, []);
+
+  useEffect(() => {
+    if (!restored) return;
+    try {
+      sessionStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify({ open, messages: messages.slice(-30) })
+      );
+    } catch {
+      // Storage can be full or blocked; the chat still works without it.
+    }
+  }, [open, messages, restored]);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
