@@ -113,7 +113,7 @@ async function main() {
 
     await prisma.listing.upsert({
       where: { id: listing.id },
-      update: { image, images: [image] },
+      update: {},
       create: { ...listing, image, images: [image], status: "active" },
     });
   }
